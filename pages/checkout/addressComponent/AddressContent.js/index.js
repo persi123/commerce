@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Card, Radio } from "antd";
-
+import React, { useState } from 'react';
+import { Card, Radio } from 'antd';
+// import styled from "styled-components";
 export default function index({ addressList, selectedAddress }) {
   //   const [addressList, setAddressList] = useState(
   return (
@@ -8,7 +8,7 @@ export default function index({ addressList, selectedAddress }) {
       <div className="row main">
         <Radio.Group
           onChange={(e) => selectedAddress({ selectedAddress: e.target.value })}
-          style={{ display: "flex", flexWrap: "wrap", width: "100%" }}
+          style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}
         >
           <div className="cards-container">
             {addressList &&

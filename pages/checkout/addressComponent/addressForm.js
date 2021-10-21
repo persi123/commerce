@@ -1,16 +1,38 @@
-import React from "react";
-import { Form, Input, Radio } from "antd";
+import React from 'react';
+import { Form, Input, Radio } from 'antd';
+import styled from 'styled-components';
+// import { FormItem, FlexContainer } from './style';
 
-import { FormItem, FlexContainer } from "./style";
+const FormItem = styled(Form.Item)`
+  .ant-form-item {
+    display: block;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  .ant-form-item-label {
+    text-align: start;
+    color: #292a2c;
+    font-weight: bold;
+  }
+  .ant-input {
+    border-radius: 8px;
+  }
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export default function AddressContainer({ change, state = {} }) {
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
-  const { pincode = "", city = "", name = "", addressLine2 = "" } = state;
+  const { pincode = '', city = '', name = '', addressLine2 = '' } = state;
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: '100%' }}>
       <Form
         // {...layout}
         id="address"
@@ -42,7 +64,7 @@ export default function AddressContainer({ change, state = {} }) {
           rules={[
             {
               required: true,
-              message: "Please pick an item!",
+              message: 'Please pick an item!',
             },
           ]}
         >

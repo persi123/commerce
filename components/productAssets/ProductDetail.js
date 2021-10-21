@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import ReviewStars from "./ReviewStars";
-import VariantSelector from "../productAssets/VariantSelector";
-import { animateScroll as scroll } from "react-scroll";
-import { connect } from "react-redux";
-import { addToCart } from "../../store/actions/cartActions";
+import React, { Component } from 'react';
+import ReviewStars from './ReviewStars';
+import VariantSelector from '../productAssets/VariantSelector';
+import { animateScroll as scroll } from 'react-scroll';
+import { connect } from 'react-redux';
+import { addToCart } from '../../store/actions/cartActions';
 
 class ProductDetail extends Component {
   constructor(props) {
@@ -51,11 +51,11 @@ class ProductDetail extends Component {
    * Handle click to scroll to review section
    */
   handleReviewClick() {
-    const section = document.querySelector("#reviews");
+    const section = document.querySelector('#reviews');
 
     if (section) {
       scroll.scrollTo(section.offsetTop - 130, {
-        smooth: "easeInOutQuint",
+        smooth: 'easeInOutQuint',
       });
     }
   }
@@ -82,7 +82,7 @@ class ProductDetail extends Component {
     } = this.props.product;
     const { selectedOptions } = this.state;
 
-    if (!selectedOptions || typeof selectedOptions !== "object") {
+    if (!selectedOptions || typeof selectedOptions !== 'object') {
       return base;
     }
 
@@ -134,7 +134,7 @@ class ProductDetail extends Component {
           <ReviewStars count={4.5} />
         </div>
         <p className="font-size-display3 font-family-secondary mt-2 mb-2">{name}</p>
-        <div className="mb-4 pb-3 font-size-subheader">{(description || "").replace(reg, "")}</div>
+        <div className="mb-4 pb-3 font-size-subheader">{(description || '').replace(reg, '')}</div>
 
         {/* Product Variant */}
         <div className="d-sm-block">
@@ -155,7 +155,7 @@ class ProductDetail extends Component {
             type="button"
           >
             <span className="flex-grow-1 mr-3 text-center">
-              {soldOut ? "Sold out" : "Add to cart"}
+              {soldOut ? 'Sold out' : 'Add to cart'}
             </span>
             <span className="border-left border-color-white pl-3">
               {priceSymbol}

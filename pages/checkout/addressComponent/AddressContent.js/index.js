@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { Card, Radio } from 'antd';
 // import styled from "styled-components";
-export default function index({ addressList, selectedAddress }) {
+export default function index({ address, addressList, selectedAddress, type }) {
   //   const [addressList, setAddressList] = useState(
+  console.log({ address }, { selectedAddress });
+  const addresstype = {
+    shipping: 'selectedAddress',
+    billing: 'billingAddress',
+  };
+  console.log({ address, addressList, selectedAddress, type });
   return (
     <>
       <div className="row main">
         <Radio.Group
-          onChange={(e) => selectedAddress({ selectedAddress: e.target.value })}
+          onChange={(e) => selectedAddress({ [`${addresstype[type]}`]: e.target.value })}
           style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}
-          value="home"
+          value={address}
         >
           <div className="cards-container">
             {addressList &&
@@ -22,8 +28,8 @@ export default function index({ addressList, selectedAddress }) {
                         {el.type}
                         {/* </Radio> */}
                       </div>
-                      <div>{el.addressLine1}</div>
-                      <div>{el.addressLine2}</div>
+                      <div>{el.addressLine}</div>
+                      {/* <div>{el.addressLine2}</div> */}
                       <span>
                         {el.state}:{el.pincode}
                       </span>

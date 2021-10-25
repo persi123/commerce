@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Radio } from 'antd';
 import styled from 'styled-components';
 // import { FormItem, FlexContainer } from './style';
@@ -30,7 +30,9 @@ export default function AddressContainer({ change, state = {} }) {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
-  const { pincode = '', city = '', name = '', addressLine2 = '' } = state;
+
+  const [Type, setType] = useState(false);
+  const { pincode = '', city = '', name = '', addressLine2 = '', type = '' } = state;
   return (
     <div style={{ width: '100%' }}>
       <Form
@@ -43,8 +45,8 @@ export default function AddressContainer({ change, state = {} }) {
         <FormItem name="name" label="Name" rules={[{ required: true }]}>
           <Input name="name" onChange={change} value={name} />
         </FormItem>
-        <FormItem name="addressLine2" label="Address Line 2" rules={[{ required: true }]}>
-          <Input name="addressLine2" onChange={change} value={addressLine2} />
+        <FormItem name="addressLine" label="Address Line " rules={[{ required: true }]}>
+          <Input name="addressLine" onChange={change} value={addressLine2} />
         </FormItem>
         <FlexContainer>
           <FormItem name="pincode" label="Pincode" rules={[{ required: true }]}>
@@ -57,23 +59,39 @@ export default function AddressContainer({ change, state = {} }) {
             <Input name="state" onChange={change} value={state} />
           </FormItem>
         </FlexContainer>
-        <Form.Item
-          name="type"
-          // label="Radio.Button"
-          className="address-type"
-          rules={[
-            {
-              required: true,
-              message: 'Please pick an item!',
-            },
-          ]}
-        >
-          <Radio.Group>
-            <Radio.Button value="a">Home</Radio.Button>
-            <Radio.Button value="b">Work</Radio.Button>
-            <Radio.Button value="c">Other</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Form.Item
+            name="type"
+            // label="Radio.Button"
+            className="address-type"
+            rules={[
+              {
+                required: true,
+                message: 'Please pick an item!',
+              },
+            ]}
+          >
+            <Radio.Group
+              name="type"
+              onChange={(e) => {
+                e.target.value === 'other' ? setType(true) : setType(false);
+                console.log(e.target);
+                change(e);
+              }}
+
+              // onChange={change}
+            >
+              <Radio.Button value="home">Home</Radio.Button>
+              <Radio.Button value="work">Work</Radio.Button>
+              <Radio.Button value="other">Other</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          {!!Type && (
+            <Form.Item>
+              <Input style={{ borderRadius: '8px' }} name="type" onChange={change} value={type} />
+            </Form.Item>
+          )}
+        </div>
       </Form>
     </div>
   );

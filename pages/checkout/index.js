@@ -107,32 +107,32 @@ class CheckoutPage extends Component {
       pincode: '',
       city: '',
       state: '',
-      addressLine1: '',
-      addressLine2: '',
+      addressLine: '',
+
+      type: '',
       addressList: [
         {
           type: 'home',
           pincode: '301001',
           city: 'alwar',
           state: 'rajasthan',
-          addressLine1: 'Lorem Ipsum has been the industry\'s ',
-          addressLine2: 'Lorem Ipsum has been the industry\'s ',
+          addressLine: 'Lorem Ipsum has been the industry\'s ',
         },
         {
           type: 'work',
           pincode: '301001',
           city: 'alwar',
           state: 'rajasthan',
-          addressLine1: 'Lorem Ipsum has been the industry\'s ',
-          addressLine2: 'Lorem Ipsum has been the industry\'s ',
+          addressLine: 'Lorem Ipsum has been the industry\'s ',
+          // addressLine: "Lorem Ipsum has been the industry's ",
         },
         {
           type: 'other',
           pincode: '301001',
           city: 'alwar',
           state: 'rajasthan',
-          addressLine1: 'Lorem Ipsum has been the industry\'s ',
-          addressLine2: 'Lorem Ipsum has been the industry\'s ',
+          addressLine: 'Lorem Ipsum has been the industry\'s ',
+          // addressLine2: "Lorem Ipsum has been the industry's ",
         },
       ],
       shippingAddressList: [
@@ -141,17 +141,18 @@ class CheckoutPage extends Component {
           pincode: '301001',
           city: 'alwar',
           state: 'rajasthan',
-          addressLine1: 'Lorem Ipsum has been the industry\'s ',
-          addressLine2: 'Lorem Ipsum has been the industry\'s ',
+          addressLine: 'Lorem Ipsum has been the industry\'s ',
+          // addressLine2: "Lorem Ipsum has been the industry's ",
         },
       ],
-      selectedAddress: '',
+      selectedAddress: 'home',
       selectedDeliverySpeed: 'standred',
       editShipping: false,
       paymentMethod: 'prepaid',
       otpVerified: false,
       pendingOtp: true,
       success: true,
+      billingAddress: '',
     };
 
     this.captureOrder = this.captureOrder.bind(this);
@@ -241,7 +242,7 @@ class CheckoutPage extends Component {
       );
     }
 
-    console.log(this.state.selectedAddress, 'hii');
+    console.log(this.state, 'hii');
   }
 
   /**
@@ -611,15 +612,26 @@ class CheckoutPage extends Component {
     // let form = Form.useForm();
     e.preventDefault();
     this.setState({ edit: false });
-    const { pincode, city, state, addressLine1, addressLine2 } = this.state;
-    this.setState({
-      addressList: [
-        ...this.state.addressList,
-        { pincode, city, state, addressLine1, addressLine2 },
-      ],
-    });
-    console.log({ pincode, city, state, addressLine1, addressLine2 }, 'form');
+    const { pincode, city, state, addressLine, type } = this.state;
+
+    if (type !== 'work' && !type !== 'home') {
+      console.log(type);
+      this.setState({
+        addressList: [...this.state.addressList, { type, pincode, city, state, addressLine }],
+      });
+    } else {
+      this.setState({
+        addressList: this.state.addressList.map((el) => {
+          if (el.type === type) {
+            return { type, pincode, city, state, addressLine };
+          }
+          return el;
+        }),
+      });
+    }
+    this.setState({ selectedAddress: type });
   };
+
   onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -743,8 +755,24 @@ class CheckoutPage extends Component {
             className="custom-container py-5 my-4 my-sm-5"
             style={{ backgroundColor: 'aliceblue' }}
           >
+            {!!this.state.pendingOtp ||
+              (!!this.state.otpVerified && (
+                <div className="row footer" style={{ padding: '17px', marginTop: 0 }}>
+                  <h3 style={{ padding: '5px', fontWeight: '600' }}>Checkout</h3>
+                  <div>
+                    <Button
+                      type="primary"
+                      icon={<Image src={Group} style={{ marginRight: '5px' }} />}
+                      onClick={() => this.next()}
+                      className="next"
+                    >
+                      Place Order
+                    </Button>
+                  </div>
+                </div>
+              ))}
             {/* Row */}
-            <div className="row mt-4" style={{ justifyContent: 'space-between' }}>
+            <div className="row mt-2" style={{ justifyContent: 'space-between' }}>
               <div className="col-12 col-md-10 col-lg-7 offset-md-1 offset-lg-0 column-container">
                 {/* Breadcrumbs */}
                 <div className="d-flex pb-4 breadcrumb-container">
@@ -820,6 +848,8 @@ class CheckoutPage extends Component {
                                 <AddressContent
                                   addressList={this.state.addressList}
                                   selectedAddress={this.handleSelectedAddress}
+                                  address={this.state.selectedAddress}
+                                  type="shipping"
                                 />
                               ) : (
                                 <AddressContainer change={this.onChange} state={this.state} />
@@ -852,10 +882,17 @@ class CheckoutPage extends Component {
                                 {!this.state.editShipping ? (
                                   <div className="col-12  m-3 ">
                                     <div>
-                                      <CustomCheck>Same as shipping address</CustomCheck>
+                                      <CustomCheck
+                                        checked={this.state.billingAddress.length ? false : true}
+                                      >
+                                        Same as shipping address
+                                      </CustomCheck>
                                       <div style={{ marginTop: '20px' }}>
                                         <AddressContent
                                           addressList={this.state.shippingAddressList}
+                                          selectedAddress={this.handleSelectedAddress}
+                                          address={this.state.billingAddress}
+                                          type="billing"
                                         />
                                       </div>
                                     </div>

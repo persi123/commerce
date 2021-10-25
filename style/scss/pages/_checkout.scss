@@ -61,6 +61,9 @@
     height: 28px;
     width: 28px;
   }
+  .ant-steps-item-container:focus {
+    outline: none;
+  }
 }
 .heading-container {
   display: flex;
@@ -130,6 +133,9 @@
   .ant-radio-button-wrapper:hover {
     color: #292a2c;
   }
+  .ant-radio-button-wrapper:not(:first-child)::before {
+    display: none;
+  }
 }
 
 .collapse-container {
@@ -180,5 +186,33 @@
   }
   .ant-radio-inner::after {
     background-color: black;
+  }
+  div {
+    font-weight: normal;
+  }
+}
+
+.quantity {
+  &:focus {
+    outline: none;
+  }
+}
+
+.product-image {
+  height: 67px;
+  width: 66px;
+
+  img {
+    border-radius: 10px;
+  }
+}
+.success {
+  .ant-result-success .ant-result-icon > .anticon {
+    color: #eaeaea;
+  }
+}
+.site-navigation-steps {
+  .anticon {
+    vertical-align: 0;
   }
 }

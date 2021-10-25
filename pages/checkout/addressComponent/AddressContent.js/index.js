@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Radio } from 'antd';
+import React, { useState } from "react";
+import { Card, Radio } from "antd";
 // import styled from "styled-components";
 export default function index({ addressList, selectedAddress }) {
   //   const [addressList, setAddressList] = useState(
@@ -8,22 +8,26 @@ export default function index({ addressList, selectedAddress }) {
       <div className="row main">
         <Radio.Group
           onChange={(e) => selectedAddress({ selectedAddress: e.target.value })}
-          style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}
+          style={{ display: "flex", flexWrap: "wrap", width: "100%" }}
+          value="home"
         >
           <div className="cards-container">
             {addressList &&
               addressList.map((el) => (
                 <>
-                  <Card>
-                    <div className="mb-2">
-                      {/* <Radio> */}
-                      <Radio value={el.type}> {el.type}</Radio>
-                      {/* </Radio> */}
-                    </div>
-                    <div>{el.addressLine1}</div>
-                    <div>
-                      {el.addressLine2}-{el.state}:{el.pincode}
-                    </div>
+                  <Card className="radio-wrapper">
+                    <Radio value={el.type}>
+                      <div className="mb-2">
+                        {/* <Radio> */}
+                        {el.type}
+                        {/* </Radio> */}
+                      </div>
+                      <div>{el.addressLine1}</div>
+                      <div>{el.addressLine2}</div>
+                      <span>
+                        {el.state}:{el.pincode}
+                      </span>
+                    </Radio>
                   </Card>
                 </>
               ))}

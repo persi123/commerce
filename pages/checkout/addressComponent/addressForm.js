@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Form, Input, Radio } from 'antd';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { Form, Input, Radio } from "antd";
+import styled from "styled-components";
 // import { FormItem, FlexContainer } from './style';
 
 const FormItem = styled(Form.Item)`
@@ -32,9 +32,9 @@ export default function AddressContainer({ change, state = {} }) {
   };
 
   const [Type, setType] = useState(false);
-  const { pincode = '', city = '', name = '', addressLine2 = '', type = '' } = state;
+  const { pincode = "", city = "", name = "", addressLine2 = "", type = "" } = state;
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: "100%" }}>
       <Form
         // {...layout}
         id="address"
@@ -59,7 +59,7 @@ export default function AddressContainer({ change, state = {} }) {
             <Input name="state" onChange={change} value={state} />
           </FormItem>
         </FlexContainer>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <Form.Item
             name="type"
             // label="Radio.Button"
@@ -67,14 +67,14 @@ export default function AddressContainer({ change, state = {} }) {
             rules={[
               {
                 required: true,
-                message: 'Please pick an item!',
+                message: "Please pick an item!",
               },
             ]}
           >
             <Radio.Group
               name="type"
               onChange={(e) => {
-                e.target.value === 'other' ? setType(true) : setType(false);
+                e.target.value === "other" ? setType(true) : setType(false);
                 console.log(e.target);
                 change(e);
               }}
@@ -88,7 +88,12 @@ export default function AddressContainer({ change, state = {} }) {
           </Form.Item>
           {!!Type && (
             <Form.Item>
-              <Input style={{ borderRadius: '8px' }} name="type" onChange={change} value={type} />
+              <Input
+                style={{ borderRadius: "8px" }}
+                name="type"
+                onChange={change}
+                value={type === "other" ? "" : type}
+              />
             </Form.Item>
           )}
         </div>

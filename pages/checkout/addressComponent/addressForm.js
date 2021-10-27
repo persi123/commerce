@@ -32,7 +32,14 @@ export default function AddressContainer({ change, state = {} }) {
   };
 
   const [Type, setType] = useState(false);
-  const { pincode = "", city = "", name = "", addressLine2 = "", type = "" } = state;
+  const {
+    pincode = "",
+    city = "",
+    name = "",
+    addressLine1 = "",
+    addressLine2 = "",
+    type = "",
+  } = state;
   return (
     <div style={{ width: "100%" }}>
       <Form
@@ -45,9 +52,27 @@ export default function AddressContainer({ change, state = {} }) {
         <FormItem name="name" label="Name" rules={[{ required: true }]}>
           <Input name="name" onChange={change} value={name} />
         </FormItem>
-        <FormItem name="addressLine" label="Address Line " rules={[{ required: true }]}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <FormItem
+            name="addressLine"
+            label="Door / Apartment /  Floor no"
+            rules={[{ required: true }]}
+            style={{ width: "400px" }}
+          >
+            <Input name="addressLine1" onChange={change} value={addressLine1} />
+          </FormItem>
+          <FormItem
+            name="addressLine"
+            label="Address"
+            rules={[{ required: true }]}
+            style={{ width: "300px" }}
+          >
+            <Input name="addressLine2" onChange={change} value={addressLine2} />
+          </FormItem>
+        </div>
+        {/* <FormItem name="addressLine" label="Address Line " rules={[{ required: true }]}>
           <Input name="addressLine" onChange={change} value={addressLine2} />
-        </FormItem>
+        </FormItem> */}
         <FlexContainer>
           <FormItem name="pincode" label="Pincode" rules={[{ required: true }]}>
             <Input name="pincode" onChange={change} value={pincode} />

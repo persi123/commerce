@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { Card, Radio } from 'antd';
+import React, { useState } from "react";
+import { Card, Radio } from "antd";
 // import styled from "styled-components";
 export default function index({ address, addressList, selectedAddress, type }) {
   //   const [addressList, setAddressList] = useState(
   console.log({ address }, { selectedAddress });
   const addresstype = {
-    shipping: 'selectedAddress',
-    billing: 'billingAddress',
+    shipping: "selectedAddress",
+    billing: "billingAddress",
   };
   console.log({ address, addressList, selectedAddress, type });
   return (
     <>
-      <div className="row main">
+      <div className={type === "billing" ? "row " : "row main"}>
         <Radio.Group
           onChange={(e) => selectedAddress({ [`${addresstype[type]}`]: e.target.value })}
-          style={{ display: 'flex', flexWrap: 'wrap', width: '100%' }}
+          style={{ display: "flex", flexWrap: "wrap", width: "100%" }}
           value={address}
         >
           <div className="cards-container">

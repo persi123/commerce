@@ -107,7 +107,8 @@ class CheckoutPage extends Component {
       pincode: "",
       city: "",
       state: "",
-      addressLine: "",
+      addressLine1: "",
+      addressLine2: "",
 
       type: "",
       addressList: [

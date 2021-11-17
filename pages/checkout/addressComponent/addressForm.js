@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Form, Input, Radio, AutoComplete } from "antd";
-import styled from "styled-components";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Form, Input, Radio, AutoComplete } from 'antd';
+import styled from 'styled-components';
+import axios from 'axios';
 // import { FormItem, FlexContainer } from './style';
 
 const FormItem = styled(Form.Item)`
@@ -63,19 +63,19 @@ export default function AddressContainer({ change, state = {} }) {
 
   const [Type, setType] = useState(false);
   let {
-    pincode = "",
-    city = "",
-    name = "",
-    addressLine1 = "",
-    addressLine2 = "",
-    type = "",
+    pincode = '',
+    city = '',
+    name = '',
+    addressLine1 = '',
+    addressLine2 = '',
+    type = '',
   } = state;
 
   const [formData, setFormData] = useState({
-    pincode: "",
-    city: "",
+    pincode: '',
+    city: '',
   });
-  const [codee, setcode] = useState("kk");
+  const [codee, setcode] = useState('kk');
 
   const handleSearch = async (value) => {
     let res = [];
@@ -91,10 +91,10 @@ export default function AddressContainer({ change, state = {} }) {
   };
 
   const handleFormInputs = () => {
-    let suggestion = "";
+    let suggestion = '';
     // const items = result.length && result.includes(",")?result.split(","):result;
-    if (result.length && result[result.length - 1].includes(",")) {
-      suggestion = result[result.length - 1].split(",");
+    if (result.length && result[result.length - 1].includes(',')) {
+      suggestion = result[result.length - 1].split(',');
     } else {
       suggestion = result[result.length - 1];
     }
@@ -118,7 +118,7 @@ export default function AddressContainer({ change, state = {} }) {
   const handleChange = () => {};
   console.log({ result });
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: '100%' }}>
       <Form
         // {...layout}
         form={form}
@@ -130,18 +130,18 @@ export default function AddressContainer({ change, state = {} }) {
         <FormItem name="name" label="Name" rules={[{ required: true }]}>
           <Input name="name" onChange={change} value={name} />
         </FormItem>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <FormItem
             name="addressLine"
             label="Door / Apartment /  Floor no"
             rules={[{ required: true }]}
-            style={{ width: "400px" }}
+            style={{ width: '400px' }}
           >
             <Input name="addressLine1" onChange={change} value={addressLine1} />
           </FormItem>
-          <FormItem style={{ display: "flex", alignItems: "center" }}>
+          <FormItem style={{ display: 'flex', alignItems: 'center' }}>
             <AutoComplete
-              style={{ width: 273, top: "18px" }}
+              style={{ width: 273, top: '18px' }}
               onSearch={handleSearch}
               // placeholder="input here"
               onSelect={handleFormInputs}
@@ -170,7 +170,7 @@ export default function AddressContainer({ change, state = {} }) {
             <Input name="state" onChange={change} value={state} />
           </FormItem>
         </FlexContainer>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <Form.Item
             name="type"
             // label="Radio.Button"
@@ -178,14 +178,14 @@ export default function AddressContainer({ change, state = {} }) {
             rules={[
               {
                 required: true,
-                message: "Please pick an item!",
+                message: 'Please pick an item!',
               },
             ]}
           >
             <Radio.Group
               name="type"
               onChange={(e) => {
-                e.target.value === "other" ? setType(true) : setType(false);
+                e.target.value === 'other' ? setType(true) : setType(false);
                 console.log(e.target);
                 change(e);
               }}
@@ -200,10 +200,10 @@ export default function AddressContainer({ change, state = {} }) {
           {!!Type && (
             <Form.Item>
               <Input
-                style={{ borderRadius: "8px" }}
+                style={{ borderRadius: '8px' }}
                 name="type"
                 // onChange={change}
-                value={type === "other" ? "" : type}
+                value={type === 'other' ? '' : type}
               />
             </Form.Item>
           )}

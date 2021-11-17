@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Tabs, Collapse } from "antd";
-import Image from "next/image";
-import discount from ".././discount.png";
+import React from 'react';
+import styled from 'styled-components';
+import { Tabs, Collapse } from 'antd';
+import Image from 'next/image';
+import discount from '.././discount.png';
 
 const Tab = styled(Tabs)`
   /* padding: 13px 45px !important; */
@@ -54,7 +54,7 @@ const index = () => {
       <div className="row">
         <div className="col-12  m-3">
           <p className="font-size-subheader font-weight-semibold ">Delivery Address</p>
-          <p className="font-size-caption" style={{ opacity: "60%", maxWidth: "200px" }}>
+          <p className="font-size-caption" style={{ opacity: '60%', maxWidth: '200px' }}>
             Under Secretary (Funds), PMO, South Block, New Delhi, Pin -110011
           </p>
           <p className="font-size-paragraph">(Home)</p>
@@ -62,16 +62,16 @@ const index = () => {
       </div>
       <div className="row">
         <div className="col-12  m-3">
-          <p className="font-size-subheader" style={{ display: "flex", alignItems: "center" }}>
-            <div style={{ width: "19px", height: "22px", marginRight: "5px" }}>
+          <p className="font-size-subheader" style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ width: '19px', height: '22px', marginRight: '5px' }}>
               <Image src={discount} />
             </div>
             <span> Available Offers</span>
           </p>
-          <p className="font-size-caption" style={{ opacity: "60%" }}>
+          <p className="font-size-caption" style={{ opacity: '60%' }}>
             10% cashback on above order of 100 valid only on amazon pay
           </p>
-          <p className="font-size-paragraph" style={{ textDecoration: "underline" }}>
+          <p className="font-size-paragraph" style={{ textDecoration: 'underline' }}>
             <Collapse
               // activeKey={this.state.showOffers}
               className="collapse-container"
@@ -81,11 +81,11 @@ const index = () => {
                 <div
                   style={{
                     // marginLeft: "24px",
-                    lineHeight: "2.1",
-                    fontWeight: "normal",
+                    lineHeight: '2.1',
+                    fontWeight: 'normal',
                   }}
                 >
-                  <ul style={{ lineHeight: "39px", fontSize: " 13px" }}>
+                  <ul style={{ lineHeight: '39px', fontSize: ' 13px' }}>
                     <li>10% cashback on order above 100 vaild only for amazon pay</li>
                     <li>10% cashback on order above 100 vaild only for amazon pay</li>
                     <li>10% cashback on order above 100 vaild only for amazon pay</li>

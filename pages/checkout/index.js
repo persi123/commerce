@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import axios from "axios";
 import styled from "styled-components";
 // import { Card, Checkbox, Form, Radio, Tabs } from "antd";
 import { Steps, Button, message, Card, Radio, Checkbox, Progress } from "antd";
@@ -634,6 +635,9 @@ class CheckoutPage extends Component {
   };
 
   onChange = (e) => {
+    if (e.target.name === "addressLine2") {
+      axios.get();
+    }
     this.setState({
       [e.target.name]: e.target.value,
     });

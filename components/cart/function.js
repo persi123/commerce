@@ -1,20 +1,20 @@
 export const openCheckout = () => {
-  console.log("llpopo");
+  console.log('llpopo');
   const getProductDetails = async () => {
-    const response = await fetch("/cart.json");
+    const response = await fetch('/cart.json');
     const json = await response.json();
     const data = {
       order_details: json,
-      domain: "harish-30.shopify.com",
+      domain: 'harish-30.shopify.com',
     };
-    console.log(data, "post data");
+    console.log(data, 'post data');
     const postResponse = await postData(data);
-    console.log(document.getElementById("pickrr-iframe"));
+    console.log(document.getElementById('pickrr-iframe'));
     document.getElementById(
-      "pickrr-iframe"
+      'pickrr-iframe'
     ).src = `https://checkout-pickrr.netlify.app/?checkoutId=${postResponse.data.checkout_id}`;
 
-    document.getElementById("pickrr-container").style.display = "flex";
+    document.getElementById('pickrr-container').style.display = 'flex';
   };
 
   getProductDetails();
@@ -22,15 +22,15 @@ export const openCheckout = () => {
 
 const postData = async (data) => {
   const config = {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(data),
-    mode: "cors",
+    mode: 'cors',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
-  const response = await fetch("https://pickout.pickrr.com/users/checkout/init/", config);
+  const response = await fetch('https://pickout.pickrr.com/users/checkout/init/', config);
   const json = await response.json();
-  console.log(json, "apidata");
+  console.log(json, 'apidata');
   return json;
 };

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Main, Head, NextScript } from "next/document";
+// import { Head } from "next/head";
 import { Transition } from "react-transition-group";
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import CartItem from "../cart/CartItem";
@@ -65,9 +66,7 @@ class Cart extends Component {
 
     return (
       <>
-        {/* <Head> */}
-        {/* <Script src="/script.js"></Script> */}
-        {/* </Head> */}
+        {/* <Head><script src="/scripts.js"></script></Head> */}
         <Transition
           in={isOpen}
           timeout={duration}

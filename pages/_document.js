@@ -3,6 +3,7 @@
 
 import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -56,7 +57,6 @@ class MyDocument extends Document {
             content="A custom, open source demo storefront built with Next.js and Commerce.js. Take a look!"
           />
           <meta name="twitter:card" content="summary_large_image" />
-          {/* <script src="https://checkout-pickrr.netlify.app/script.js"></script> */}
           <script src="/scripts.js"></script>
         </Head>
         <body>
